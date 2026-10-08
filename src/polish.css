@@ -1,0 +1,290 @@
+:root {
+  color: #17313b;
+  background: #e9f0f1;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+}
+button {
+  cursor: pointer;
+  min-height: 36px;
+  transition: background 0.15s;
+}
+button:disabled {
+  cursor: default;
+  opacity: 0.45;
+}
+button:focus-visible,
+[tabindex]:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #13a58d;
+  outline-offset: 3px;
+}
+.layout {
+  height: 100dvh;
+}
+.app-toolbar {
+  min-height: 76px;
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #102d38;
+  color: #eafff9;
+  border-bottom: 3px solid #39baa5;
+  gap: 16px;
+}
+.app-toolbar strong {
+  font-size: 24px;
+  letter-spacing: -0.6px;
+}
+.app-toolbar span {
+  display: block;
+  font-size: 12px;
+  opacity: 0.7;
+  margin-top: 2px;
+}
+.app-toolbar > div:last-child {
+  display: flex;
+  gap: 10px;
+  padding-right: 75px;
+}
+.app-toolbar button {
+  border: 1px solid #53848a;
+  border-radius: 7px;
+  background: #173e49;
+  color: #edfffc;
+  padding: 8px 14px;
+}
+.app-container {
+  flex: 1;
+  min-height: 0;
+  height: auto;
+}
+.document-list {
+  width: 240px;
+  flex-shrink: 0;
+  background: #f3f7f6;
+}
+.document-list-header h2 {
+  font-size: 16px;
+}
+.import-hint {
+  font-size: 11px;
+  padding: 0 16px;
+  color: #587078;
+}
+.import-error,
+.app-notice {
+  font-size: 13px;
+  color: #8d281b;
+  background: #fff0e7;
+  padding: 12px;
+  overflow-wrap: anywhere;
+}
+.document-item.active {
+  background: #daf3eb;
+  border-color: #209d88;
+}
+.main-content {
+  min-width: 0;
+}
+.normal-reader {
+  position: relative;
+}
+.reader-section-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12px;
+  color: #617a80;
+  margin-bottom: 24px;
+}
+.reader-section-nav button {
+  border: 1px solid #ccdeda;
+  border-radius: 6px;
+  padding: 4px 8px;
+  background: transparent;
+  margin-left: 4px;
+  font-size: 11px;
+}
+.normal-reader-content {
+  max-width: 740px;
+}
+.section-hint {
+  display: block;
+  font-size: 11px;
+  margin-top: 28px;
+  opacity: 0.6;
+}
+.speed-reader-display {
+  min-height: 140px;
+  border-bottom: 1px solid #d7e5e0;
+}
+.speed-reader-text {
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  overflow-wrap: anywhere;
+}
+.control-buttons button {
+  border-radius: 7px;
+}
+.control-buttons button:nth-child(2) {
+  background: #167f70;
+  border-color: #167f70;
+  color: white;
+  min-width: 100px;
+}
+.progress-fill {
+  background: #179e8a;
+}
+.speed-info {
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 13px;
+}
+.editable-value {
+  border: 0;
+  background: none;
+  padding: 4px;
+  color: #167f70;
+  font: inherit;
+}
+.bookmark-manager {
+  width: 240px;
+  flex-shrink: 0;
+  background: #f3f7f6;
+}
+.settings-toggle {
+  position: fixed;
+  top: 21px;
+  right: 25px;
+  background: #e0f6ee;
+  color: #163b34;
+  border: 0;
+  border-radius: 7px;
+}
+.settings-panel {
+  max-height: 90dvh;
+  overflow-y: auto;
+  width: min(560px, calc(100vw - 24px));
+}
+@media (max-width: 1000px) {
+  .document-list,
+  .bookmark-manager {
+    width: 190px;
+  }
+  .speed-info {
+    gap: 6px;
+  }
+}
+@media (max-width: 760px) {
+  .layout,
+  #root {
+    height: auto;
+    min-height: 100dvh;
+    overflow: visible;
+  }
+  .app-toolbar {
+    padding: 16px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .app-toolbar > div:last-child {
+    padding-right: 0;
+  }
+  .settings-toggle {
+    top: 18px;
+    right: 16px;
+  }
+  .app-container {
+    flex-direction: column;
+    overflow: visible;
+  }
+  .document-list,
+  .bookmark-manager {
+    width: 100%;
+    height: auto;
+    max-height: 280px;
+  }
+  .document-list-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .document-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .document-item {
+    flex: 1;
+    min-width: 160px;
+  }
+  .main-content {
+    overflow: visible;
+  }
+  .reader-container {
+    height: 380px;
+    flex: none;
+  }
+  .normal-reader {
+    padding: 20px 16px;
+  }
+  .speed-reader {
+    flex: none;
+  }
+  .speed-reader-controls {
+    padding: 12px;
+  }
+  .control-buttons {
+    flex-wrap: wrap;
+  }
+  .control-buttons button {
+    padding: 8px 10px;
+  }
+  .speed-info {
+    justify-content: center;
+  }
+  .speed-result {
+    width: 100%;
+  }
+  .bookmark-manager {
+    min-height: 150px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+.speed-reader {
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  border-top-color: #8bc8bd;
+}
+.speed-reader-display {
+  flex: none;
+  min-height: 120px;
+}
+.speed-reader-controls {
+  flex-shrink: 0;
+}
+.arrow-btn {
+  min-height: 22px;
+  height: 22px;
+}
+@media (max-width: 760px) {
+  .app-toolbar > div:first-child,
+  .app-toolbar > div:last-child {
+    width: 100%;
+  }
+}
