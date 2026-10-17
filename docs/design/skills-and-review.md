@@ -33,3 +33,9 @@
 本地 5 项单元测试、TypeScript/Vite 构建、既有浏览器回归与选字/书城回归均通过。两个草图在 1440px / 390px 上进行真实状态切换、溢出与页面错误检查，并查看截图。新增 `tests/product-journey-browser.mjs` 纳入 CI，覆盖首次试读、示例去重/进度、双向焦点、回看暂停、键盘与加载状态。发布时以独立 `docs/releases/` 回执记录线上结果与回滚，不用本地测试代替生产验收。
 
 保留限制：实体 iPhone/iPad/Safari 的系统选字手柄尚未实机验证；不把桌面 Chrome 的窄屏测试称作 iOS 验收。原有浏览器本地存储边界、备份仅导出和扫描 PDF 需要 OCR 等限制未改变。
+
+发布回执：[`20261018-product-journey`](../releases/20261018-product-journey.json)。线上已通过原有回归、选字/书城回归、新用户路径回归，15 个文件 SHA-256 与产物一致；仅更新 CybeReader 独立容器。
+
+## 其他机器复现安装
+
+用该机器的 skill-installer，从 `NousResearch/hermes-agent` 的固定 commit `e6f57427c198cfd96854522b7a9159eb007e13c2` 安装两个路径：`skills/creative/claude-design` 和 `optional-skills/creative/sketch`。先核对 `SKILL.md`、MIT 许可及目录仍无可执行依赖；不要用名称相近的技能替代。技能安装是本机操作，不随本项目的 Docker 镜像自动安装。

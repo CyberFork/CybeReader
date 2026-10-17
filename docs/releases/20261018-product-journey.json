@@ -1,0 +1,225 @@
+{
+  "date": "2026-10-18",
+  "project": "CybeReader",
+  "url": "https://work.cyberforker.com/cybereader/",
+  "release": "20261018-product-journey",
+  "sourceCommit": "943fe0f8ac31232c6b1f92a9952ff12093034218",
+  "archiveSha256": "9147cc225dbe3aec57926f569016f745dd4b7c6a42bb424ea07bec08bf694735",
+  "image": "sha256:8046a4746160f1d48b1457310b7527bb884567d2093f653034d563cba9dcbd97",
+  "scope": [
+    "首次阅读路径引导、示例去重并保留进度",
+    "原文与速读的显式焦点导航、一键暂停回看",
+    "静态播放状态、键盘帮助、书城加载播报与书签提示",
+    "两技能固定来源与安全审查、两套可交互设计草图"
+  ],
+  "verified": {
+    "unitTests": 5,
+    "build": "passed",
+    "realNginxCandidateJourney": "passed",
+    "productionRegression": {
+      "status": "passed",
+      "results": [
+        {
+          "width": 1440,
+          "playPause": true,
+          "bookmarkNote": true,
+          "resume": true,
+          "pdf": true,
+          "docx": true,
+          "legacyDocRejected": true,
+          "finishPauses": true,
+          "longTextDomBounded": true,
+          "keyboard": true,
+          "backup": true,
+          "overflow": false,
+          "errors": 0
+        },
+        {
+          "width": 390,
+          "playPause": true,
+          "bookmarkNote": true,
+          "resume": true,
+          "pdf": true,
+          "docx": true,
+          "legacyDocRejected": true,
+          "finishPauses": true,
+          "longTextDomBounded": true,
+          "keyboard": true,
+          "backup": true,
+          "overflow": false,
+          "errors": 0
+        }
+      ]
+    },
+    "productionSelectionLibrary": {
+      "base": "https://work.cyberforker.com/cybereader/",
+      "results": [
+        {
+          "width": 1440,
+          "exactSelection": true,
+          "backwardSelection": true,
+          "graphemeSafe": true,
+          "realDragPauses": true,
+          "longTextOffset": true,
+          "persisted": true,
+          "themeAligned": true,
+          "bookImportDownload": true,
+          "noEarlyBookFetch": true,
+          "errors": []
+        },
+        {
+          "width": 390,
+          "exactSelection": true,
+          "backwardSelection": true,
+          "graphemeSafe": true,
+          "realDragPauses": true,
+          "longTextOffset": true,
+          "persisted": true,
+          "themeAligned": true,
+          "bookImportDownload": true,
+          "noEarlyBookFetch": true,
+          "errors": []
+        },
+        {
+          "downloadFailureAndRetry": true
+        }
+      ]
+    },
+    "productionJourney": {
+      "ok": true,
+      "results": [
+        {
+          "width": 1440,
+          "onboarding": true,
+          "demoDeduplicated": true,
+          "progressPreserved": true,
+          "focusNavigation": true,
+          "returnPauses": true,
+          "keyboard": true,
+          "bookstoreBusy": true,
+          "noHorizontalOverflow": true,
+          "errors": []
+        },
+        {
+          "width": 390,
+          "onboarding": true,
+          "demoDeduplicated": true,
+          "progressPreserved": true,
+          "focusNavigation": true,
+          "returnPauses": true,
+          "keyboard": true,
+          "bookstoreBusy": true,
+          "noHorizontalOverflow": true,
+          "errors": []
+        }
+      ]
+    },
+    "assets": [
+      {
+        "path": "assets/browser-BIZEB9Ly.js",
+        "sha256": "eddcd5a7df1892e9e5f13d79319b24ab400ecd1f3e90a21a0fbf9e0cf611aa2d",
+        "status": 200,
+        "matches": true
+      },
+      {
+        "path": "assets/index-C8-vfPSC.js",
+        "sha256": "08eb72d8efebaf1485b4c43beb89c8a00823bc4cb6b515d9bb737e5ceebcc1b0",
+        "status": 200,
+        "matches": true
+      },
+      {
+        "path": "assets/index-DdxUEuFp.css",
+        "sha256": "32192e793596dab2aeb3cd1ef7e1b3bbb5edef77d0538ad459c937d4f632b2fa",
+        "status": 200,
+        "matches": true
+      },
+      {
+        "path": "assets/pdf-CpbOKS0d.js",
+        "sha256": "1cf01dd2580002085af388adde55779bd50ced97e4010b7748846f5c4422f59d",
+        "status": 200,
+        "matches": true
+      },
+      {
+        "path": "assets/pdf.worker.min-CjEcRF4W.mjs",
+        "sha256": "9536359f1b8367850d485731ca1d5e45c159a7b7a0912325e539937aa21ceb18",
+        "status": 200,
+        "matches": true
+      },
+      {
+        "path": "favicon.svg",
+        "sha256": "2fc40d9530303900d7b5b2cb6542a60c89bb01732ffdd7c168990816064836da",
+        "status": 200,
+        "matches": true
+      },
+      {
+        "path": "fonts/Orbitron-Medium.ttf",
+        "sha256": "dffdeea679a57ca6ee8c01917da250a8845b99b65e5785a5cee7078ea6846bc8",
+        "status": 200,
+        "matches": true
+      },
+      {
+        "path": "fonts/Orbitron-OFL.txt",
+        "sha256": "dd6fdb6716fd179d1fe891759efb3f9200753fdf6abf513b55b712c4ae16e512",
+        "status": 200,
+        "matches": true
+      },
+      {
+        "path": "fonts/Rajdhani-Bold.ttf",
+        "sha256": "0e2754864bf70da4f279189b713026551927c0c10258ff6dd431ff71fd6c8dd0",
+        "status": 200,
+        "matches": true
+      },
+      {
+        "path": "fonts/Rajdhani-Medium.ttf",
+        "sha256": "88a3937dc5d0d96d6b1a313b82802b78541bfdb5c004a208dfeab56192938538",
+        "status": 200,
+        "matches": true
+      },
+      {
+        "path": "fonts/Rajdhani-OFL.txt",
+        "sha256": "793bdd8538a0c03afb5bc10906be27ad1dc76f143cfeac8c55cd9075a5b3a55c",
+        "status": 200,
+        "matches": true
+      },
+      {
+        "path": "index.html",
+        "sha256": "16850a1d8aace4cb204866ada86ff8228bececd1f7f95bffe20bdafb6da9367a",
+        "status": 200,
+        "matches": true
+      },
+      {
+        "path": "library/pg23839.txt",
+        "sha256": "dd2385d1e6bc3a5cde6d4d5efdf16d1bab0bff40a0209a7dc9c4909b80bf3035",
+        "status": 200,
+        "matches": true
+      },
+      {
+        "path": "library/pg23950.txt",
+        "sha256": "ed422e10c16c19af7ca7b09ca0320012e60776b3d7cb054769b8f7d9a19aea7d",
+        "status": 200,
+        "matches": true
+      },
+      {
+        "path": "library/pg24039.txt",
+        "sha256": "6c6de23a7f815384669a4080555f7b1a2a078300650b257a93484f7af74122a4",
+        "status": 200,
+        "matches": true
+      }
+    ],
+    "health": "healthy",
+    "cspConnectSrcSelf": true,
+    "assetVerificationTransport": "curl; Python urllib received an edge 403 and was not used as evidence"
+  },
+  "boundaries": [
+    "未修改 minisv 仓库、部署、课件或容器；未启用迁移",
+    "未修改共享网关、DNS、Tunnel、存储键或上传用户文档",
+    "保留三本 Gutenberg 原始快照、许可、校验与既有选字/主题功能",
+    "390px Chrome 不是实体 iPhone/iPad/Safari 验收，系统选字手柄仍待实机核验"
+  ],
+  "rollback": {
+    "release": "20261018-selection-library",
+    "image": "sha256:cb82988d8939ffd4cdc62273b22590378ddd4226383e73296bfd5accc7ac4194",
+    "procedure": "在 hecate-mini 获取 ~/Services/cybereader/deploy.lock 后，校验 current 与 cybereader.Image 仍为本回执版本；将旧镜像 tag 为 cybereader:local，在 releases/20261018-selection-library 运行 docker compose up -d --no-deps web；健康与 index.html 哈希通过后将 current 指回该目录；释放锁。旧镜像和目录均保留。"
+  },
+  "temporaryEvidence": "/tmp/cybereader-product-20261018/"
+}
