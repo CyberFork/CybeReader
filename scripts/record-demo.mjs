@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
 const assets = fileURLToPath(new URL("../docs/assets/", import.meta.url));
 await mkdir(assets, { recursive: true });
-const frames = await mkdtemp(join(tmpdir(), "flashreader-demo-"));
+const frames = await mkdtemp(join(tmpdir(), "cybereader-demo-"));
 const browser = await chromium.launch({
   headless: true,
   ...(process.env.CHROMIUM_EXECUTABLE
@@ -19,12 +19,12 @@ try {
     viewport: { width: 1280, height: 800 },
     deviceScaleFactor: 1,
   });
-  await page.goto(process.env.APP_URL || "http://127.0.0.1:4175", {
+  await page.goto(process.env.APP_URL || "http://127.0.0.1:4175/cybereader/", {
     waitUntil: "networkidle",
   });
   await page.getByRole("button", { name: "体验示例" }).click();
   await page.locator(".speed-reader-text").waitFor();
-  await page.screenshot({ path: join(assets, "flashreader-desktop.png") });
+  await page.screenshot({ path: join(assets, "cybereader-desktop.png") });
   const capture = async (count) => {
     for (let i = 0; i < count; i++) {
       await page.screenshot({
@@ -55,11 +55,11 @@ try {
   await capture(6);
   await page.getByRole("button", { name: "播放", exact: true }).click();
   await capture(10);
-  await page.screenshot({ path: join(assets, "flashreader-demo-poster.png") });
+  await page.screenshot({ path: join(assets, "cybereader-demo-poster.png") });
   const mobile = await browser.newPage({
     viewport: { width: 390, height: 844 },
   });
-  await mobile.goto(process.env.APP_URL || "http://127.0.0.1:4175", {
+  await mobile.goto(process.env.APP_URL || "http://127.0.0.1:4175/cybereader/", {
     waitUntil: "networkidle",
   });
   await mobile.getByRole("button", { name: "体验示例" }).click();
@@ -67,7 +67,7 @@ try {
   await mobile.waitForTimeout(300);
   await mobile.evaluate(()=>window.scrollTo(0,0));
   await mobile.screenshot({
-    path: join(assets, "flashreader-mobile.png"),
+    path: join(assets, "cybereader-mobile.png"),
     fullPage: true,
   });
 } finally {
@@ -85,14 +85,14 @@ execFileSync(
     "[0:v]scale=960:-1:flags=lanczos,split[a][b];[a]palettegen=stats_mode=diff:max_colors=128[p];[b][p]paletteuse=dither=bayer:bayer_scale=3",
     "-loop",
     "0",
-    join(assets, "flashreader-demo.gif"),
+    join(assets, "cybereader-demo.gif"),
   ],
   { stdio: "ignore" },
 );
 console.log(
   JSON.stringify({
     frames: frame,
-    gif: join(assets, "flashreader-demo.gif"),
+    gif: join(assets, "cybereader-demo.gif"),
     temporaryFrames: frames,
   }),
 );

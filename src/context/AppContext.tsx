@@ -28,9 +28,9 @@ import {
 import { chunkText, indexAt, clamp } from "../utils/reading";
 const DEFAULT_SETTINGS: Settings = {
   fontSize: 18,
-  fontColor: "#172b35",
-  backgroundColor: "#fffdf8",
-  highlightColor: "#b7efe5",
+  fontColor: "#d9eef5",
+  backgroundColor: "#09151d",
+  highlightColor: "#214f5b",
   speedReaderWindowWidth: 5,
   speedReaderPlaybackSpeed: 2,
 };

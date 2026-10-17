@@ -1,16 +1,16 @@
-# FlashReader
+# CybeReader
 
-**让阅读回到自己的节奏。** 一个纯浏览器运行的双窗口速读工具：保留原文上下文，同时以可调宽度、速度展示文字片段。适合专注练习与回看，不承诺提高理解力或提供经验证的训练效果。
+**让阅读回到自己的节奏。** 采用 2077 协议风格的纯浏览器双窗口速读工具：保留原文上下文，同时以可调宽度、速度展示文字片段。适合专注练习与回看，不承诺提高理解力或提供经验证的训练效果。
 
-![FlashReader 实际运行演示](docs/assets/flashreader-demo.gif)
+![CybeReader 实际运行演示](docs/assets/cybereader-demo.gif)
 
 演示为真实浏览器操作：加载原创示例 → 播放 → 调整窗口与速度 → 暂停、书签与笔记 → 设置 → 跳转后继续。未使用私人书籍、合成 UI 或虚构数据。
 
-![桌面界面](docs/assets/flashreader-desktop.png)
+![桌面界面](docs/assets/cybereader-desktop.png)
 
 <details><summary>查看手机布局</summary>
 
-<img src="docs/assets/flashreader-mobile.png" alt="FlashReader 手机界面" width="390" />
+<img src="docs/assets/cybereader-mobile.png" alt="CybeReader 手机界面" width="390" />
 
 </details>
 
@@ -29,8 +29,8 @@
 需要 **Node.js 22.12+（推荐 24）**。应用不需要后端、账号、API Key 或 Python。
 
 ```bash
-git clone https://github.com/CyberFork/flashReader.git
-cd flashReader
+git clone https://github.com/CyberFork/CybeReader.git
+cd CybeReader
 npm ci --ignore-scripts
 npm run dev -- --host 127.0.0.1
 ```
@@ -42,7 +42,7 @@ npm run build
 npm run preview -- --host 127.0.0.1 --port 4175
 ```
 
-`dist/` 可部署到静态服务器。本轮公开的是源码与演示，并未额外开通在线阅读服务。
+`dist/` 可部署到静态服务器。线上入口：**https://work.cyberforker.com/cybereader/**。以 `/cybereader/` 为固定资源基路径；直接访问该路径即可载入阅读器。
 
 ## 操作
 
@@ -73,7 +73,7 @@ npm run test:browser
 npm run demo:record
 ```
 
-也可以用 `CHROMIUM_EXECUTABLE` 指定已安装的 Chrome。默认测试 / 录制地址为 `http://127.0.0.1:4175`，可用 `APP_URL` 覆盖。GIF 录制需要 ffmpeg；帧文件只写到系统临时目录。
+也可以用 `CHROMIUM_EXECUTABLE` 指定已安装的 Chrome。默认测试 / 录制地址为 `http://127.0.0.1:4175/cybereader/`，可用 `APP_URL` 覆盖。GIF 录制需要 ffmpeg；帧文件只写到系统临时目录。
 
 自动化覆盖：字素/字符偏移、非法参数、导入边界、播放/暂停/完成、前后移动、书签笔记、进度恢复、PDF/DOCX 本地解析、旧 DOC 错误、长文 DOM 预算、键盘焦点、备份导出和手机无横向溢出。`.github/workflows/ci.yml` 在推送与 PR 时运行构建和测试。
 
@@ -88,3 +88,15 @@ React 18 + TypeScript + Vite；[PDF.js](https://mozilla.github.io/pdf.js/)；[ff
 ## 许可证
 
 项目源码已公开，**项目许可证尚待作者确认**，暂不宣称 MIT 或其他授权。第三方依赖仍按其各自许可使用，见 [第三方声明](THIRD_PARTY_NOTICES.md)。
+
+## 部署
+
+`deploy/Dockerfile` 打包已验证的 `dist`，由非 root Nginx 提供 `/cybereader/`。`/cybereader` 会保留查询参数跳转到带斜杠路径；其他路径返回 404，不占用 work 域名的其他应用路由。
+
+更名保留原 `speed_reader_*` 浏览器存储键，避免同源升级丢失旧阅读资料。不同域名/本机端口之间遵循浏览器同源隔离，不会自动同步私人文档。
+
+## 2077 视觉来源
+
+配色与几何语法参考作者指定的 CyberAnchor `design/skins/2077`，使用青色协议强调、暗色面板、细边框与切角，自行编写 CSS；没有复制 APK、游戏图像或锁定布局。Rajdhani / Orbitron 随包附 OFL 许可。阅读背景/文字/高亮仍可自定义，已保存的配色不会因主题更新被覆盖。界面无持续动画或 WebGL。
+
+生产部署使用 Hecate 的既有 `work-sync-gateway`，只增加 `deploy/work-gateway-snippet.conf` 中的两个 `/cybereader` 路由。CybeReader 为独立只读容器，加入已有 `work-sync_default` 网络；不用修改 DNS 或 Tunnel，也不改变 SFTPGo、MSV、Zen、SudokuPon 等兄弟应用。网关上线前必须备份配置、检查源哈希、执行 `nginx -t`，通过后仅热重载。

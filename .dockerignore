@@ -1,0 +1,6 @@
+*
+!deploy/
+!deploy/nginx.conf
+!dist/
+!dist/**
+!deploy/security-headers.conf

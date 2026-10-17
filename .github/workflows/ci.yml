@@ -1,4 +1,4 @@
-name: Verify FlashReader
+name: Verify CybeReader
 on: [push, pull_request]
 jobs:
   test:
@@ -14,6 +14,7 @@ jobs:
       - run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: |
-          npm run preview -- --host 127.0.0.1 --port 4175 > /tmp/preview.log 2>&1 &
-          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:4175/ >/dev/null && break || sleep 1; done
+          docker build -f deploy/Dockerfile -t cybereader:test .
+          docker run -d --name cybereader-ci -p 127.0.0.1:4175:8080 cybereader:test
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:4175/cybereader/ >/dev/null && break || sleep 1; done
           npm run test:browser

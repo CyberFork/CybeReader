@@ -1,7 +1,7 @@
 import { chromium } from "playwright";
 import assert from "node:assert/strict";
 import { fileURLToPath } from "node:url";
-const base = process.env.APP_URL || "http://127.0.0.1:4175";
+const base = process.env.APP_URL || "http://127.0.0.1:4175/cybereader/";
 const browser = await chromium.launch({
   headless: true,
   ...(process.env.CHROMIUM_EXECUTABLE
@@ -68,12 +68,12 @@ try {
     await page.reload({ waitUntil: "networkidle" });
     await page
       .locator(".document-item")
-      .filter({ hasText: "FlashReader 示例.txt" })
+      .filter({ hasText: "CybeReader 示例.txt" })
       .click();
     assert.equal(await progress(), resumed);
     for (const [file, text] of [
-      ["sample.pdf", "FlashReader PDF fixture"],
-      ["sample.docx", "FlashReader DOCX fixture"],
+      ["sample.pdf", "CybeReader PDF fixture"],
+      ["sample.docx", "CybeReader DOCX fixture"],
     ]) {
       await page
         .getByLabel("选择文档文件")
@@ -154,7 +154,7 @@ try {
     await page.getByRole("button", { name: "导出备份", exact: true }).click();
     assert.equal(
       (await download).suggestedFilename(),
-      "flashreader-backup.json",
+      "cybereader-backup.json",
     );
     page.once("dialog", (d) => d.accept());
     await page
@@ -170,9 +170,20 @@ try {
       false,
     );
     assert.equal(
-      requests.some((u) => u.startsWith("http") && !u.startsWith(base)),
+      requests.some((u) => {
+        try {
+          const request = new URL(u);
+          const app = new URL(base);
+          return (
+            request.origin === app.origin &&
+            !request.pathname.startsWith("/cybereader/")
+          );
+        } catch {
+          return false;
+        }
+      }),
       false,
-      "document parser used an external worker/request",
+      "same-origin request escaped the /cybereader/ subpath",
     );
     assert.deepEqual(errors, []);
     results.push({

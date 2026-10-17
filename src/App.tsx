@@ -24,7 +24,7 @@ function Toolbar() {
   const sample = async () => {
     try {
       await importDocumentFile(
-        new File([DEMO_TEXT], "FlashReader 示例.txt", { type: "text/plain" }),
+        new File([DEMO_TEXT], "CybeReader 示例.txt", { type: "text/plain" }),
       );
     } catch (e) {
       setNotice(e instanceof Error ? e.message : "无法载入示例");
@@ -61,7 +61,7 @@ function Toolbar() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "flashreader-backup.json";
+    a.download = "cybereader-backup.json";
     document.body.appendChild(a);
     a.click();
     a.remove();
@@ -71,7 +71,7 @@ function Toolbar() {
     <>
       <header className="app-toolbar">
         <div>
-          <strong>FlashReader</strong>
+          <strong>CybeReader</strong>
           <span>让阅读回到自己的节奏</span>
         </div>
         <div>
@@ -112,3 +112,5 @@ function App() {
 export default App;
 
 import "./polish.css";
+
+import "./2077.css";

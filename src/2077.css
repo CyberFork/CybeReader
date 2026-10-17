@@ -1,0 +1,65 @@
+/* Original adaptation of CyberAnchor 2077 protocol visual grammar.
+   No APK artwork or locked layouts are bundled; fonts ship their OFL licenses. */
+@font-face { font-family: Rajdhani; src:url('/fonts/Rajdhani-Medium.ttf') format('truetype'); font-weight:400 600; font-display:swap; }
+@font-face { font-family: Rajdhani; src:url('/fonts/Rajdhani-Bold.ttf') format('truetype'); font-weight:700; font-display:swap; }
+@font-face { font-family: Orbitron; src:url('/fonts/Orbitron-Medium.ttf') format('truetype'); font-weight:500; font-display:swap; }
+:root { color-scheme:dark; --bg:#060f15; --panel:#0b1a23; --line:#24505f; --cyan:#5ef6ff; --muted:#a1b8c4; --red:#fe605a; --text:#d9eef5; color:var(--text); background:var(--bg); }
+body { background:linear-gradient(135deg,#0b222d,var(--bg) 65%); font-family:Rajdhani,system-ui,sans-serif; color:var(--text); }
+button { border:1px solid var(--line); border-radius:0; background:#102935; color:var(--text); }
+button:hover:not(:disabled) { background:#173f4c; color:var(--cyan); }
+button:focus-visible,[tabindex]:focus-visible,input:focus-visible,textarea:focus-visible { outline:2px solid var(--cyan); outline-offset:2px; }
+button:disabled { opacity:.42; }
+.app-toolbar { background:#07141d; color:var(--cyan); border-bottom:1px solid var(--cyan); padding-block:16px; }
+.app-toolbar strong { font-family:Orbitron,system-ui,sans-serif; font-size:21px; font-weight:500; letter-spacing:.03em; }
+.app-toolbar span { color:var(--muted); opacity:1; font-size:12px; letter-spacing:.1em; }
+.app-toolbar button,.settings-toggle { border:1px solid #327180; background:#0d2632; color:var(--cyan); border-radius:0; box-shadow:none; clip-path:polygon(7px 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%,0 7px); }
+.document-list,.bookmark-manager { background:var(--panel); border-color:var(--line); }
+.document-list-header,.bookmark-manager-header { border-color:var(--line); }
+.document-list-header h2,.bookmark-manager-header h3 { color:var(--cyan); font-size:15px; letter-spacing:.05em; }
+.document-list-header h2::before { content:'01 / '; color:var(--muted); font-size:11px; }
+.bookmark-manager-header h3::before { content:'04 / '; color:var(--muted); font-size:11px; }
+.import-button,.add-bookmark-button { background:#0c303b; border:1px solid #367382; border-radius:0; color:var(--cyan); }
+.import-button:hover,.add-bookmark-button:hover { background:#164552; }
+.import-hint,.document-item-meta,.document-item-type,.empty-state,.empty-message { color:var(--muted); }
+.document-item { border:1px solid transparent; border-radius:0; background:transparent; }
+.document-item.active { border-color:#357281; background:#0b303c; box-shadow:inset 3px 0 var(--cyan); }
+.document-item:hover { background:#102e3b; }
+.document-item-name { color:var(--text); }
+.document-item-type { background:#153440; }
+.delete-button,.bookmark-actions button:last-child { color:var(--red); background:#321f26; border:1px solid #6c363b; border-radius:0; }
+.delete-button:hover { background:#49232d; }
+.reader-container,.normal-reader { border-color:var(--line); }
+.reader-section-nav { color:var(--muted); border-bottom:1px solid var(--line); padding-bottom:12px; }
+.reader-section-nav button { border-color:var(--line); border-radius:0; color:inherit; background:transparent; }
+.normal-reader-content { font-family:system-ui,-apple-system,sans-serif; line-height:1.9; }
+.highlight { border-radius:0; box-shadow:0 2px 0 #5ef6ff66; transition:none; }
+.speed-reader { border-color:var(--line); background:#07151f; }
+.speed-reader-display { box-shadow:none; border:1px solid #33788a; border-radius:0; margin:12px; position:relative; clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px); }
+.speed-reader-display::before { content:'03 / FOCUS'; position:absolute; top:9px; left:12px; font-family:Rajdhani,monospace; font-size:10px; letter-spacing:.15em; color:var(--muted); }
+.speed-reader-text { font-family:system-ui,sans-serif; font-weight:500; }
+.speed-reader-controls { background:var(--panel); border-color:var(--line); }
+.control-buttons button { background:#0c2a38; border:1px solid var(--line); border-radius:0; color:var(--text); }
+.control-buttons button:nth-child(2) { background:#143c49; border:1px solid var(--cyan); color:var(--cyan); }
+.control-buttons button:nth-child(2)[aria-pressed=true] { background:var(--cyan); color:#06212c; }
+.control-buttons button:hover:not(:disabled) { background:#1a4957; color:var(--cyan); }
+.control-buttons button:disabled { background:#10232e; color:var(--muted); }
+.progress-bar { background:#1a3441; border-radius:0; height:4px; }
+.progress-fill { background:var(--cyan); border-radius:0; transition:none; }
+.progress-text,.speed-info,.speed-result { color:var(--muted); }
+.speed-info { border-color:var(--line); }
+.editable-value,.speed-multiply,.arrow-btn { color:var(--cyan); }
+.arrow-btn { background:#0b2733; border-color:#346978; }
+.bookmark-item { border:1px solid var(--line); border-radius:0; background:#0b2632; }
+.bookmark-text,.bookmark-note { color:var(--text); }
+.bookmark-note { background:#102d39; border-color:var(--line); }
+.bookmark-actions button { background:#10313e; color:var(--cyan); border:1px solid var(--line); border-radius:0; }
+.settings-overlay { background:#000b; }
+.settings-panel { border:1px solid #33788a; border-radius:0; box-shadow:none; background:var(--panel); color:var(--text); }
+.settings-header,.settings-section,.setting-group,.speed-reader-settings { border-color:var(--line); }
+.settings-header h2,.settings-section h3 { color:var(--cyan); }
+.settings-content,.setting-group label { color:var(--text); }
+.close-button { color:var(--muted); }
+input[type=number],textarea { border:1px solid #346978; border-radius:0; background:#07151f; color:var(--text); }
+input[type=range] { accent-color:var(--cyan); }
+.import-error,.app-notice { background:#311e25; border-left:3px solid var(--red); color:#ffc6c2; }
+@media(max-width:760px) { .app-toolbar { padding:18px 16px; } .app-toolbar strong { font-size:19px; } .speed-info { font-size:12px; } .bookmark-manager { border-top:1px solid var(--line); } }
