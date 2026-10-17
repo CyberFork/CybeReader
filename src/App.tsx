@@ -1,6 +1,6 @@
 import { useApp } from "./context/AppContext";
 import { loadAllProgress } from "./services/progressManager";
-import { DEMO_TEXT } from "./demo";
+import { useDemoDocument } from "./hooks/useDemoDocument";
 import { AppProvider } from "./context/AppContext";
 import { Layout } from "./components/Layout";
 import { DocumentList } from "./components/DocumentList";
@@ -14,7 +14,6 @@ import "./App.css";
 
 function Toolbar() {
   const {
-    importDocumentFile,
     documents,
     bookmarks,
     settings,
@@ -23,15 +22,7 @@ function Toolbar() {
     notice,
     setNotice,
   } = useApp();
-  const sample = async () => {
-    try {
-      await importDocumentFile(
-        new File([DEMO_TEXT], "CybeReader 示例.txt", { type: "text/plain" }),
-      );
-    } catch (e) {
-      setNotice(e instanceof Error ? e.message : "无法载入示例");
-    }
-  };
+  const sample = useDemoDocument();
   const backup = () => {
     const blob = new Blob(
       [

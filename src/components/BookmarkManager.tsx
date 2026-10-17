@@ -70,7 +70,7 @@ export function BookmarkManager() {
       </div>
       <div className="bookmark-list">
         {currentBookmarks.length === 0 ? (
-          <div className="empty-state">暂无书签</div>
+          <div className="empty-state">暂无书签<small className="bookmark-empty-hint">把当前位置留作书签，也能补上一句笔记。</small></div>
         ) : (
           currentBookmarks.map((bookmark) => (
             <div key={bookmark.id} className="bookmark-item">

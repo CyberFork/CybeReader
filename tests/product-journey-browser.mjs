@@ -1,0 +1,62 @@
+import { chromium } from 'playwright';
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+const base = process.env.APP_URL || 'http://127.0.0.1:4175/cybereader/';
+const artifacts = process.env.JOURNEY_ARTIFACTS || '/tmp/cybereader-product-journey';
+const browser = await chromium.launch({headless:true, ...(process.env.CHROMIUM_EXECUTABLE ? {executablePath:process.env.CHROMIUM_EXECUTABLE} : {})});
+await fs.mkdir(artifacts,{recursive:true});
+const results=[];
+try {
+  for (const width of [1440,390]) {
+    const context=await browser.newContext({viewport:{width,height:width===390?844:1000}});
+    const page=await context.newPage(); const errors=[];
+    page.on('pageerror',e=>errors.push(e.message));
+    await page.goto(base,{waitUntil:'networkidle'});
+    await page.getByRole('heading',{name:'找到位置，开始阅读。'}).waitFor();
+    await page.screenshot({path:`${artifacts}/start-${width}.png`,fullPage:true});
+    await page.getByRole('button',{name:'用示例开始',exact:true}).click();
+    const demo=page.getByLabel('阅读 CybeReader 示例.txt',{exact:true});
+    await demo.waitFor();
+    await page.getByRole('button',{name:'下一个',exact:true}).click();
+    await page.getByRole('button',{name:'下一个',exact:true}).click();
+    const before=await page.locator('.speed-reader-text').innerText();
+    await page.getByRole('button',{name:'体验示例',exact:true}).click();
+    assert.equal(await demo.count(),1);
+    assert.equal(await page.locator('.speed-reader-text').innerText(),before);
+    await page.getByRole('button',{name:'从此处播放',exact:true}).click();
+    assert.equal(await page.evaluate(()=>document.activeElement?.id),'focus-reader');
+    await page.getByRole('button',{name:'暂停',exact:true}).waitFor();
+    const box=await page.locator('.speed-reader-display').boundingBox();
+    assert(box && box.y>=0 && box.y<(width===390?844:1000), 'focus display must enter viewport');
+    await page.getByRole('button',{name:'回看原文',exact:true}).click();
+    assert.equal(await page.evaluate(()=>document.activeElement?.id),'original-text');
+    await page.getByRole('button',{name:'播放',exact:true}).waitFor();
+    const paused=await page.locator('.speed-reader-text').innerText();
+    await page.waitForTimeout(700);
+    assert.equal(await page.locator('.speed-reader-text').innerText(),paused);
+    assert.equal(await page.locator('.focus-mode').innerText(),'已暂停');
+    assert((await page.locator('#focus-keyboard-hint').innerText()).includes('空格'));
+    await page.locator('#focus-reader').focus();
+    await page.keyboard.press('Space');
+    await page.getByRole('button',{name:'暂停',exact:true}).waitFor();
+    await page.keyboard.press('Space');
+    await page.getByRole('button',{name:'播放',exact:true}).waitFor();
+    await page.route('**/library/pg24039.txt',async route=>{
+      const response=await route.fetch();
+      await new Promise(resolve=>setTimeout(resolve,400));
+      await route.fulfill({response});
+    });
+    await page.getByRole('button',{name:'书城',exact:true}).click();
+    await page.getByLabel('搜索示例书籍').fill('老子');
+    await page.getByRole('button',{name:'导入阅读',exact:true}).click();
+    await page.locator('.bookstore-list[aria-busy="true"]').waitFor();
+    assert((await page.locator('.bookstore-progress').innerText()).includes('校验原文'));
+    await page.getByLabel('阅读 老子 · Gutenberg.txt',{exact:true}).waitFor();
+    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+    await page.screenshot({path:`${artifacts}/reading-${width}.png`,fullPage:true});
+    assert.deepEqual(errors,[]);
+    results.push({width,onboarding:true,demoDeduplicated:true,progressPreserved:true,focusNavigation:true,returnPauses:true,keyboard:true,bookstoreBusy:true,noHorizontalOverflow:true,errors});
+    await context.close();
+  }
+  console.log(JSON.stringify({ok:true,results},null,2));
+} finally { await browser.close(); }

@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useApp } from "../context/AppContext";
 import "./SpeedReader.css";
+import { focusReaderRegion } from "../utils/readerFocus";
 
 export function SpeedReader() {
   const {
     currentDocument,
+    pausePlayback,
     position,
     seekToPosition,
     segments,
@@ -68,9 +70,11 @@ export function SpeedReader() {
 
   return (
     <div
+      id="focus-reader"
       className="speed-reader"
       tabIndex={0}
       aria-label="速读控制区"
+      aria-describedby="focus-keyboard-hint"
       onKeyDown={(e) => {
         if (e.target !== e.currentTarget) return;
         if (e.key === " ") {
@@ -85,6 +89,11 @@ export function SpeedReader() {
         }
       }}
     >
+      <div className="focus-reader-heading">
+        <span className="focus-document" title={currentDocument.name}>{currentDocument.name}</span>
+        <span className="focus-mode" role="status" aria-live="polite">{speedReaderState.isPlaying ? "正在播放" : "已暂停"}</span>
+        <button onClick={() => { pausePlayback(); focusReaderRegion("original"); }}>回看原文</button>
+      </div>
       <div
         className="speed-reader-display"
         style={{
@@ -102,6 +111,7 @@ export function SpeedReader() {
         </div>
       </div>
       <div className="speed-reader-controls">
+        <small id="focus-keyboard-hint" className="focus-keyboard-hint">聚焦速读区后：空格播放/暂停 · ← / → 回看</small>
         <div className="control-buttons">
           <button
             onClick={handlePrevious}

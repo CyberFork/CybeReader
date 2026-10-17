@@ -2,6 +2,8 @@ import { useEffect, useRef } from "react";
 import { useApp } from "../context/AppContext";
 import { indexAt } from "../utils/reading";
 import "./NormalReader.css";
+import { ReadingStart } from "./ReadingStart";
+import { focusReaderRegion } from "../utils/readerFocus";
 export function NormalReader() {
   const {
     currentDocument,
@@ -59,7 +61,7 @@ export function NormalReader() {
   if (!currentDocument)
     return (
       <div className="normal-reader empty">
-        <div className="empty-message">选择文档或体验示例，开始阅读</div>
+        <ReadingStart />
       </div>
     );
   const start = position,
@@ -96,6 +98,7 @@ export function NormalReader() {
     }));
   return (
     <div
+      id="original-reader"
       className="normal-reader"
       style={{
         fontSize: settings.fontSize,
@@ -126,6 +129,7 @@ export function NormalReader() {
         <button onClick={() => {
           if (!selectionAction.current(true)) setSpeedReaderState(prev => ({ ...prev, isPlaying: true }));
           window.getSelection()?.removeAllRanges();
+          focusReaderRegion("focus");
         }}>从此处播放</button>
       </div>
       </div>
@@ -134,7 +138,7 @@ export function NormalReader() {
         lastSelection.current = "";
         pausePlayback();
       }} onKeyDown={() => pausePlayback()}>
-        <span ref={textRef} className="normal-reader-text" tabIndex={0} aria-label="原文，选中文字定位播放">
+        <span id="original-text" ref={textRef} className="normal-reader-text" tabIndex={0} aria-label="原文，选中文字定位播放">
           {currentDocument.content.slice(visibleStart, start)}
           <span
             ref={highlightRef}

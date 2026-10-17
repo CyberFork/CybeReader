@@ -43,7 +43,8 @@ export function Bookstore() {
       <p>选一本，直接导入阅读。第三方文本来自 Project Gutenberg；本站提供固定快照，不是实时全站搜索。仅下载所选书籍，不上传你的文档。</p>
       <input type="search" aria-label="搜索示例书籍" placeholder="书名或作者" value={query} onChange={e => setQuery(e.target.value)} />
       {error && <p className="import-error" role="alert">{error}</p>}
-      <div className="bookstore-list">
+      {busy && <p className="bookstore-progress" role="status" aria-live="polite">正在下载并校验原文，完成后自动打开。无需再次点击。</p>}
+      <div className="bookstore-list" aria-busy={Boolean(busy)}>
         {books.filter(b => `${b.title}${b.author}`.includes(query.trim())).map(book => <article key={book.id}>
           <h3>{book.title}</h3><p>{book.author} · 中文原版（繁体） · TXT · {Math.ceil(book.bytes / 1024)} KB</p>
           <div className="bookstore-actions"><button disabled={Boolean(busy)} onClick={() => load(book)}>{busy === book.id ? "正在导入…" : "导入阅读"}</button>
