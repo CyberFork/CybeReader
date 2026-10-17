@@ -90,7 +90,7 @@ function useAppState() {
     const index = Math.floor(
       clamp(next.currentIndex, 0, Math.max(0, chunks.length - 1), 0),
     );
-    setPosition(segments[index]?.start || 0);
+    setPosition(index === currentIndex ? position : segments[index]?.start || 0);
     setPlaying(Boolean(next.isPlaying && chunks.length));
   };
   const pendingProgress = useRef<{ id: string; position: number } | null>(null);
@@ -135,9 +135,9 @@ function useAppState() {
     if (currentDocument)
       pendingProgress.current = {
         id: currentDocument.id,
-        position: segments[currentIndex]?.start || 0,
+        position,
       };
-  }, [currentDocument?.id, currentIndex, segments]);
+  }, [currentDocument?.id, position]);
   useEffect(() => {
     const timer = window.setInterval(flush, 500);
     window.addEventListener("pagehide", flush);
@@ -156,10 +156,11 @@ function useAppState() {
       );
     }
   };
-  const importDocumentFile = async (file: File) => {
+  const importDocumentFile = async (file: File, initialPosition = 0) => {
     const doc = await importDocument(file);
     setDocuments((prev) => [...prev, doc]);
     setCurrentDocument(doc);
+    setPosition(Math.floor(clamp(initialPosition, 0, Math.max(0, doc.content.length - 1), 0)));
     setNotice("");
   };
   const removeDocument = (id: string) => {
@@ -195,7 +196,22 @@ function useAppState() {
     setSettings(next);
     persist("speed_reader_settings", next);
   };
+  const seekToPosition = (offset: number, play = false) => {
+    const content = currentDocument?.content || "";
+    const target = Math.floor(clamp(offset, 0, Math.max(0, content.length - 1), 0));
+    const chunk = segments[indexAt(segments, target)];
+    let safe = chunk?.start || 0;
+    // DOM offsets use UTF-16; never start inside an emoji or combining sequence.
+    for (const part of new Intl.Segmenter(undefined, { granularity: "grapheme" }).segment(chunk?.text || "")) {
+      if ((chunk?.start || 0) + part.index > target) break;
+      safe = (chunk?.start || 0) + part.index;
+    }
+    setPlaying(play);
+    setPosition(safe);
+  };
   return {
+    seekToPosition,
+    pausePlayback: () => setPlaying(false),
     documents,
     currentDocument,
     setCurrentDocument,

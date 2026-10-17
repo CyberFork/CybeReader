@@ -2,3 +2,5 @@
 *.docx binary
 *.gif binary
 *.png binary
+# Keep upstream TXT bytes unchanged for integrity verification.
+public/library/*.txt binary

@@ -7,6 +7,8 @@ import { DocumentList } from "./components/DocumentList";
 import { NormalReader } from "./components/NormalReader";
 import { SpeedReader } from "./components/SpeedReader";
 import { BookmarkManager } from "./components/BookmarkManager";
+import { ThemePicker } from "./components/ThemePicker";
+import { Bookstore } from "./components/Bookstore";
 import { Settings } from "./components/Settings";
 import "./App.css";
 
@@ -74,9 +76,12 @@ function Toolbar() {
           <strong>CybeReader</strong>
           <span>让阅读回到自己的节奏</span>
         </div>
-        <div>
+        <div className="toolbar-actions">
+          <ThemePicker />
+          <Bookstore />
           <button onClick={sample}>体验示例</button>
           <button onClick={backup}>导出备份</button>
+          <Settings />
         </div>
       </header>
       {notice && (
@@ -103,7 +108,6 @@ function App() {
           </div>
           <BookmarkManager />
         </div>
-        <Settings />
       </Layout>
     </AppProvider>
   );

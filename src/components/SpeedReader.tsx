@@ -5,6 +5,9 @@ import "./SpeedReader.css";
 export function SpeedReader() {
   const {
     currentDocument,
+    position,
+    seekToPosition,
+    segments,
     settings,
     speedReaderState,
     setSpeedReaderState,
@@ -26,11 +29,7 @@ export function SpeedReader() {
 
   const handleStop = () => {
     // 停止时重置到开始位置
-    setSpeedReaderState({
-      isPlaying: false,
-      currentIndex: 0,
-      chunks: speedReaderState.chunks,
-    });
+    seekToPosition(0);
   };
 
   const handlePrevious = () => {
@@ -52,7 +51,7 @@ export function SpeedReader() {
   };
 
   const currentChunk =
-    speedReaderState.chunks[speedReaderState.currentIndex] || "";
+    currentDocument?.content.slice(position, segments[speedReaderState.currentIndex]?.end) || "";
   const progress =
     speedReaderState.chunks.length > 0
       ? ((speedReaderState.currentIndex + 1) / speedReaderState.chunks.length) *

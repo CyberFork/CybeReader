@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useApp } from "../context/AppContext";
-import { indexAt } from "../utils/reading";
 import { Bookmark } from "../types";
 import "./BookmarkManager.css";
 
@@ -11,9 +10,8 @@ export function BookmarkManager() {
     addBookmark,
     updateBookmark,
     deleteBookmark,
-    segments,
-    speedReaderState,
-    setSpeedReaderState,
+    position,
+    seekToPosition,
   } = useApp();
 
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -27,7 +25,6 @@ export function BookmarkManager() {
     if (!currentDocument) return;
 
     // 获取当前阅读位置（从速读状态）
-    const position = segments[speedReaderState.currentIndex]?.start || 0;
     const text = currentDocument.content.substring(position, position + 50);
 
     addBookmark({
@@ -52,8 +49,7 @@ export function BookmarkManager() {
     if (!currentDocument) return;
 
     // 跳转到书签位置
-    const index = indexAt(segments, bookmark.position);
-    setSpeedReaderState((prev) => ({ ...prev, currentIndex: index }));
+    seekToPosition(bookmark.position);
   };
 
   if (!currentDocument) {

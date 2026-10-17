@@ -63,3 +63,33 @@ input[type=number],textarea { border:1px solid #346978; border-radius:0; backgro
 input[type=range] { accent-color:var(--cyan); }
 .import-error,.app-notice { background:#311e25; border-left:3px solid var(--red); color:#ffc6c2; }
 @media(max-width:760px) { .app-toolbar { padding:18px 16px; } .app-toolbar strong { font-size:19px; } .speed-info { font-size:12px; } .bookmark-manager { border-top:1px solid var(--line); } }
+/* Aligned toolbar: no fixed-position controls over the reading surface. */
+.app-toolbar { flex-shrink:0; flex-wrap:wrap; }
+.app-toolbar > .toolbar-actions { margin-left:auto; padding-right:0; display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-end; gap:8px; }
+.app-toolbar .settings-toggle { position:static; z-index:auto; font:inherit; padding:8px 14px; }
+.theme-picker { display:flex; align-items:center; justify-content:flex-end; gap:5px; }
+.app-toolbar .theme-picker button { min-width:40px; padding:8px; clip-path:none; border-radius:4px; font-size:12px; }
+.theme-picker button[aria-pressed=true] { outline:2px solid var(--cyan); outline-offset:2px; }
+.text-seek-controls { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; font-size:12px; margin-bottom:16px; }
+.text-seek-controls span { opacity:.75; }
+.text-seek-controls button { padding:6px 10px; }
+.normal-reader-text { user-select:text; -webkit-user-select:text; cursor:text; }
+.bookstore { background:var(--panel); color:var(--text); border:1px solid var(--cyan); padding:24px; width:min(680px,calc(100vw - 32px)); max-height:85dvh; overflow:auto; }
+.bookstore::backdrop { background:#000b; }
+.bookstore-header,.bookstore-actions { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+.bookstore h2 { color:var(--cyan); margin:0; }
+.bookstore p,.bookstore small { font-size:13px; line-height:1.7; }
+.bookstore input { width:100%; padding:12px; background:var(--bg); color:var(--text); border:1px solid var(--line); }
+.bookstore article { border:1px solid var(--line); padding:16px; margin:12px 0; }
+.bookstore h3 { margin:0; }
+.bookstore a { color:var(--cyan); font-size:13px; }
+.bookstore button { padding:8px 12px; }
+@media(max-width:760px) {
+  .app-toolbar > .toolbar-actions { width:100%; }
+  .theme-picker { width:100%; margin-bottom:4px; }
+  .bookstore { padding:16px; }
+}
+.reader-tools { position:sticky; top:-20px; z-index:2; padding:12px 0 1px; }
+.reader-tools .reader-section-nav { margin-bottom:8px; flex-wrap:wrap; }
+.reader-tools .text-seek-controls { margin-bottom:8px; }
+.reader-tools .reader-section-nav { color:inherit; }

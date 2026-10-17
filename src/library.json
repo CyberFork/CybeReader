@@ -1,0 +1,44 @@
+[
+  {
+    "id": "24039",
+    "title": "老子",
+    "author": "老子",
+    "source": "https://www.gutenberg.org/ebooks/24039",
+    "download": "https://www.gutenberg.org/cache/epub/24039/pg24039.txt",
+    "file": "library/pg24039.txt",
+    "bytes": 40646,
+    "characters": 26812,
+    "sha256": "6c6de23a7f815384669a4080555f7b1a2a078300650b257a93484f7af74122a4",
+    "retrieved": "2026-10-18",
+    "rights": "原站标注 Public domain in the USA；保留原文及 Project Gutenberg 许可。其他地区请按当地规则使用。",
+    "bodyStart": "第一章"
+  },
+  {
+    "id": "23839",
+    "title": "论语",
+    "author": "孔子及弟子",
+    "source": "https://www.gutenberg.org/ebooks/23839",
+    "download": "https://www.gutenberg.org/cache/epub/23839/pg23839.txt",
+    "file": "library/pg23839.txt",
+    "bytes": 88528,
+    "characters": 45178,
+    "sha256": "dd2385d1e6bc3a5cde6d4d5efdf16d1bab0bff40a0209a7dc9c4909b80bf3035",
+    "retrieved": "2026-10-18",
+    "rights": "原站标注 Public domain in the USA；保留原文及 Project Gutenberg 许可。其他地区请按当地规则使用。",
+    "bodyStart": "學而第一"
+  },
+  {
+    "id": "23950",
+    "title": "三国演义",
+    "author": "罗贯中",
+    "source": "https://www.gutenberg.org/ebooks/23950",
+    "download": "https://www.gutenberg.org/cache/epub/23950/pg23950.txt",
+    "file": "library/pg23950.txt",
+    "bytes": 1863656,
+    "characters": 662994,
+    "sha256": "ed422e10c16c19af7ca7b09ca0320012e60776b3d7cb054769b8f7d9a19aea7d",
+    "retrieved": "2026-10-18",
+    "rights": "原站标注 Public domain in the USA；保留原文及 Project Gutenberg 许可。其他地区请按当地规则使用。",
+    "bodyStart": "第一回："
+  }
+]
