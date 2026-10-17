@@ -1,0 +1,200 @@
+{
+  "date": "2026-10-18",
+  "project": "CybeReader",
+  "url": "https://work.cyberforker.com/cybereader/",
+  "release": "20261018-selection-library",
+  "sourceCommit": "7cd3042b99e372a760143be81e2eba5037a87d44",
+  "archiveSha256": "344b6751b82576c597d463ac63b8bbe9586be976341b8e7fbfffbd572441b283",
+  "image": "sha256:cb82988d8939ffd4cdc62273b22590378ddd4226383e73296bfd5accc7ac4194",
+  "scope": [
+    "原文选字精确定位、暂停与从此处播放，保留字素边界、长文偏移、进度和书签",
+    "右上角统一阅读配色和工具入口",
+    "三本 Gutenberg 完整 TXT 快照，校验后按需导入，来源及许可随文件保留"
+  ],
+  "verified": {
+    "unitTests": 5,
+    "productionSelectionLibraryBrowser": {
+      "base": "https://work.cyberforker.com/cybereader/",
+      "results": [
+        {
+          "width": 1440,
+          "exactSelection": true,
+          "backwardSelection": true,
+          "graphemeSafe": true,
+          "realDragPauses": true,
+          "longTextOffset": true,
+          "persisted": true,
+          "themeAligned": true,
+          "bookImportDownload": true,
+          "noEarlyBookFetch": true,
+          "errors": []
+        },
+        {
+          "width": 390,
+          "exactSelection": true,
+          "backwardSelection": true,
+          "graphemeSafe": true,
+          "realDragPauses": true,
+          "longTextOffset": true,
+          "persisted": true,
+          "themeAligned": true,
+          "bookImportDownload": true,
+          "noEarlyBookFetch": true,
+          "errors": []
+        },
+        {
+          "downloadFailureAndRetry": true
+        }
+      ]
+    },
+    "productionExistingRegression": {
+      "status": "passed",
+      "results": [
+        {
+          "width": 1440,
+          "playPause": true,
+          "bookmarkNote": true,
+          "resume": true,
+          "pdf": true,
+          "docx": true,
+          "legacyDocRejected": true,
+          "finishPauses": true,
+          "longTextDomBounded": true,
+          "keyboard": true,
+          "backup": true,
+          "overflow": false,
+          "errors": 0
+        },
+        {
+          "width": 390,
+          "playPause": true,
+          "bookmarkNote": true,
+          "resume": true,
+          "pdf": true,
+          "docx": true,
+          "legacyDocRejected": true,
+          "finishPauses": true,
+          "longTextDomBounded": true,
+          "keyboard": true,
+          "backup": true,
+          "overflow": false,
+          "errors": 0
+        }
+      ]
+    },
+    "assets": [
+      {
+        "path": "index.html",
+        "sha256": "4365776c8db70883eefc20214a9b19d0bec2327da31e241dd145db33fa4a2a7f",
+        "status": "200",
+        "matches": true
+      },
+      {
+        "path": "favicon.svg",
+        "sha256": "2fc40d9530303900d7b5b2cb6542a60c89bb01732ffdd7c168990816064836da",
+        "status": "200",
+        "matches": true
+      },
+      {
+        "path": "library/pg24039.txt",
+        "sha256": "6c6de23a7f815384669a4080555f7b1a2a078300650b257a93484f7af74122a4",
+        "status": "200",
+        "matches": true
+      },
+      {
+        "path": "library/pg23839.txt",
+        "sha256": "dd2385d1e6bc3a5cde6d4d5efdf16d1bab0bff40a0209a7dc9c4909b80bf3035",
+        "status": "200",
+        "matches": true
+      },
+      {
+        "path": "library/pg23950.txt",
+        "sha256": "ed422e10c16c19af7ca7b09ca0320012e60776b3d7cb054769b8f7d9a19aea7d",
+        "status": "200",
+        "matches": true
+      },
+      {
+        "path": "fonts/Orbitron-Medium.ttf",
+        "sha256": "dffdeea679a57ca6ee8c01917da250a8845b99b65e5785a5cee7078ea6846bc8",
+        "status": "200",
+        "matches": true
+      },
+      {
+        "path": "fonts/Rajdhani-Medium.ttf",
+        "sha256": "88a3937dc5d0d96d6b1a313b82802b78541bfdb5c004a208dfeab56192938538",
+        "status": "200",
+        "matches": true
+      },
+      {
+        "path": "fonts/Orbitron-OFL.txt",
+        "sha256": "dd6fdb6716fd179d1fe891759efb3f9200753fdf6abf513b55b712c4ae16e512",
+        "status": "200",
+        "matches": true
+      },
+      {
+        "path": "fonts/Rajdhani-Bold.ttf",
+        "sha256": "0e2754864bf70da4f279189b713026551927c0c10258ff6dd431ff71fd6c8dd0",
+        "status": "200",
+        "matches": true
+      },
+      {
+        "path": "fonts/Rajdhani-OFL.txt",
+        "sha256": "793bdd8538a0c03afb5bc10906be27ad1dc76f143cfeac8c55cd9075a5b3a55c",
+        "status": "200",
+        "matches": true
+      },
+      {
+        "path": "assets/index-BYlqDPyZ.js",
+        "sha256": "9445f80dcae15176269c89709f15fe17d18709a2a51711c80e662b4ce1dc9a78",
+        "status": "200",
+        "matches": true
+      },
+      {
+        "path": "assets/pdf-B8WtzpR0.js",
+        "sha256": "d873bbe1ee02cd0ed27cdbd6db1451f4606b9e90a8ed24bbac51fba1d48756c0",
+        "status": "200",
+        "matches": true
+      },
+      {
+        "path": "assets/pdf.worker.min-CjEcRF4W.mjs",
+        "sha256": "9536359f1b8367850d485731ca1d5e45c159a7b7a0912325e539937aa21ceb18",
+        "status": "200",
+        "matches": true
+      },
+      {
+        "path": "assets/browser-BIZEB9Ly.js",
+        "sha256": "eddcd5a7df1892e9e5f13d79319b24ab400ecd1f3e90a21a0fbf9e0cf611aa2d",
+        "status": "200",
+        "matches": true
+      },
+      {
+        "path": "assets/index-CuxCj1aC.css",
+        "sha256": "2a8921bd1ea7ccb1757ac92d38397c5d9341a010447b2704d35fd2f4d8ec0d83",
+        "status": "200",
+        "matches": true
+      }
+    ],
+    "nginxConfigTest": true
+  },
+  "notVerified": [
+    "实体 iPhone/iPad 的长按选字手柄与 Safari 行为；手机检查为 Chrome 390px 窗口",
+    "不提供实时第三方全量搜索，书城是固定文本快照"
+  ],
+  "preserved": [
+    "minisv 代码、课件、容器与发布目录均未修改",
+    "共享 work 网关、DNS、Tunnel 配置未修改",
+    "私人 books/ 未进入包；用户浏览器文档未上传、未清除"
+  ],
+  "rollback": {
+    "previousRelease": "20261017T204520-2077",
+    "previousImage": "cybereader:20261017T204520-2077",
+    "commands": [
+      "export PATH=/usr/local/bin:$PATH",
+      "docker tag cybereader:20261017T204520-2077 cybereader:local",
+      "cd ~/Services/cybereader/releases/20261017T204520-2077",
+      "docker compose up -d --no-deps web",
+      "curl -fsS http://127.0.0.1:8083/healthz",
+      "ln -sfn \"$HOME/Services/cybereader/releases/20261017T204520-2077\" \"$HOME/Services/cybereader/current\""
+    ]
+  }
+}
