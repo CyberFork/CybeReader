@@ -1,6 +1,7 @@
 ARG RUNTIME_BASE=nginx:1.28-alpine
 FROM ${RUNTIME_BASE}
 USER root
+RUN rm -rf /usr/share/nginx/html/*
 COPY --chown=nginx:nginx --chmod=0644 deploy/security-headers.conf /etc/nginx/cybereader-security.conf
 COPY --chown=nginx:nginx --chmod=0644 deploy/nginx.conf /etc/nginx/nginx.conf
 COPY --chown=nginx:nginx dist/ /usr/share/nginx/html/cybereader/
