@@ -1,0 +1,155 @@
+{
+  "date": "2026-10-28",
+  "project": "CybeReader",
+  "version": "1.3.0",
+  "url": "https://work.cyberforker.com/cybereader/",
+  "release": "20261028-inline-flow",
+  "sourceCommit": "307b03193c521c1431ced9bf9489243a3f73353a",
+  "archiveSha256": "7a7387faed10ab0acc308d5b0ccf2c87a6d2c22d6ccdbbdacca05b1f890fcb45",
+  "image": "sha256:8e2d5e13ffd272ea57511c09178a43d616b652b6b2496ade74bb4db0a1f452c6",
+  "scope": [
+    "原文与速读框合并为单一流式阅读面，聚焦框处于原文绝对位置",
+    "上下文与聚焦框同宽，按窗口宽度和窗口/秒离散 step 推进并自动居中",
+    "长文只渲染当前焦点前后约 8K 字符，保持进度、书签、选区和 Unicode 字素边界",
+    "节奏明细默认折叠，桌面与 390px 均保留上下文且无横向溢出",
+    "README、PRODUCT、实际截图和 GIF 演示同步更新"
+  ],
+  "verified": {
+    "unitTests": 5,
+    "build": "passed",
+    "npmAuditProduction": "0 vulnerabilities",
+    "realNginxCandidate": {
+      "health": "healthy",
+      "indexSha256": "b9d409415ecf576d190a4d6f9b012cb85da134a15b5ead6639fd058280575f49",
+      "assetCount": 15,
+      "allAssetSha256Match": true
+    },
+    "productionFlow": [
+      {
+        "width": 1440,
+        "inline": true,
+        "contextBeforeAndAfter": true,
+        "centered": true,
+        "stepPlayback": true,
+        "widthAligned": true,
+        "overflow": false
+      },
+      {
+        "width": 390,
+        "inline": true,
+        "contextBeforeAndAfter": true,
+        "centered": true,
+        "stepPlayback": true,
+        "widthAligned": true,
+        "overflow": false
+      }
+    ],
+    "productionRegression": "passed at 1440 and 390: playback, bookmarks, persistence, PDF, DOCX, keyboard, backup, long-text DOM budget, no page errors",
+    "productionSelectionLibrary": "passed at 1440 and 390: exact/reverse selection, grapheme safety, real drag pause, long-text offsets, theme, library import/download/retry",
+    "productionJourney": "passed at 1440 and 390: onboarding, demo deduplication, progress, focus navigation, return pause, bookstore loading, no overflow",
+    "securityHeaders": {
+      "cspConnectSrcSelf": true,
+      "xFrameOptions": "DENY",
+      "permissionsPolicy": "camera/microphone/geolocation disabled"
+    },
+    "assets": [
+      {
+        "path": "assets/browser-BIZEB9Ly.js",
+        "sha256": "eddcd5a7df1892e9e5f13d79319b24ab400ecd1f3e90a21a0fbf9e0cf611aa2d",
+        "matches": true
+      },
+      {
+        "path": "assets/index-BU2Po8Fi.js",
+        "sha256": "040e579dae1cb08b93ade44147de87f91134aa7f36a85bbc1a86567e876c55c5",
+        "matches": true
+      },
+      {
+        "path": "assets/index-Bx7CgQdG.css",
+        "sha256": "b9afff0b7c913479ced84da5c5efaf9107256729b8fd79c0641a26e6755e0dc2",
+        "matches": true
+      },
+      {
+        "path": "assets/pdf-DRetgf-v.js",
+        "sha256": "0e2d099e8da582cd627d3e9dc7055da567d554dd99f0905eb9c468e7c061470b",
+        "matches": true
+      },
+      {
+        "path": "assets/pdf.worker.min-CjEcRF4W.mjs",
+        "sha256": "9536359f1b8367850d485731ca1d5e45c159a7b7a0912325e539937aa21ceb18",
+        "matches": true
+      },
+      {
+        "path": "favicon.svg",
+        "sha256": "2fc40d9530303900d7b5b2cb6542a60c89bb01732ffdd7c168990816064836da",
+        "matches": true
+      },
+      {
+        "path": "fonts/Orbitron-Medium.ttf",
+        "sha256": "dffdeea679a57ca6ee8c01917da250a8845b99b65e5785a5cee7078ea6846bc8",
+        "matches": true
+      },
+      {
+        "path": "fonts/Orbitron-OFL.txt",
+        "sha256": "dd6fdb6716fd179d1fe891759efb3f9200753fdf6abf513b55b712c4ae16e512",
+        "matches": true
+      },
+      {
+        "path": "fonts/Rajdhani-Bold.ttf",
+        "sha256": "0e2754864bf70da4f279189b713026551927c0c10258ff6dd431ff71fd6c8dd0",
+        "matches": true
+      },
+      {
+        "path": "fonts/Rajdhani-Medium.ttf",
+        "sha256": "88a3937dc5d0d96d6b1a313b82802b78541bfdb5c004a208dfeab56192938538",
+        "matches": true
+      },
+      {
+        "path": "fonts/Rajdhani-OFL.txt",
+        "sha256": "793bdd8538a0c03afb5bc10906be27ad1dc76f143cfeac8c55cd9075a5b3a55c",
+        "matches": true
+      },
+      {
+        "path": "index.html",
+        "sha256": "b9d409415ecf576d190a4d6f9b012cb85da134a15b5ead6639fd058280575f49",
+        "matches": true
+      },
+      {
+        "path": "library/pg23839.txt",
+        "sha256": "dd2385d1e6bc3a5cde6d4d5efdf16d1bab0bff40a0209a7dc9c4909b80bf3035",
+        "matches": true
+      },
+      {
+        "path": "library/pg23950.txt",
+        "sha256": "ed422e10c16c19af7ca7b09ca0320012e60776b3d7cb054769b8f7d9a19aea7d",
+        "matches": true
+      },
+      {
+        "path": "library/pg24039.txt",
+        "sha256": "6c6de23a7f815384669a4080555f7b1a2a078300650b257a93484f7af74122a4",
+        "matches": true
+      }
+    ]
+  },
+  "notVerified": [
+    "实体 iPhone/iPad 的 Safari 长按选字手柄；390px 验证使用桌面 Chrome",
+    "阅读舒适度与最佳窗口/速度仍属于个人偏好，不宣称理解力增益"
+  ],
+  "preserved": [
+    "未修改 minisv 仓库、课件、部署、容器或迁移状态",
+    "未修改共享 work 网关、DNS 或 Tunnel",
+    "未上传或清除用户文档；既有 localStorage 键、进度、书签和主题保持兼容",
+    "只更新 Hecate 的独立 cybereader 容器"
+  ],
+  "rollback": {
+    "previousRelease": "20261018-product-journey",
+    "previousImage": "cybereader:20261018-product-journey",
+    "commands": [
+      "export PATH=/usr/local/bin:$PATH",
+      "docker tag cybereader:20261018-product-journey cybereader:local",
+      "cd ~/Services/cybereader/releases/20261018-product-journey",
+      "docker compose up -d --no-build --no-deps web",
+      "curl -fsS http://127.0.0.1:8083/healthz",
+      "ln -sfn \"$HOME/Services/cybereader/releases/20261018-product-journey\" \"$HOME/Services/cybereader/current\""
+    ]
+  }
+}
