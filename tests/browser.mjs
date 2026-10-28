@@ -82,9 +82,10 @@ try {
         );
       await page.waitForFunction(
         (expected) =>
-          document
-            .querySelector(".normal-reader-text")
-            ?.textContent?.includes(expected),
+          [...document.querySelectorAll(".normal-reader-text [data-source-start]")]
+            .map((node) => node.textContent || "")
+            .join("")
+            .includes(expected),
         text,
       );
     }
@@ -162,7 +163,8 @@ try {
       .filter({ hasText: "end.txt" })
       .getByRole("button", { name: "删除", exact: true })
       .click();
-    await page.locator(".speed-reader.empty").waitFor();
+    await page.locator(".reading-start").waitFor();
+    assert.equal(await page.locator("#focus-reader").count(), 0);
     assert.equal(
       await page.evaluate(
         () => document.documentElement.scrollWidth > innerWidth,

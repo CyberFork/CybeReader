@@ -5,7 +5,6 @@ import { AppProvider } from "./context/AppContext";
 import { Layout } from "./components/Layout";
 import { DocumentList } from "./components/DocumentList";
 import { NormalReader } from "./components/NormalReader";
-import { SpeedReader } from "./components/SpeedReader";
 import { BookmarkManager } from "./components/BookmarkManager";
 import { ThemePicker } from "./components/ThemePicker";
 import { Bookstore } from "./components/Bookstore";
@@ -95,7 +94,6 @@ function App() {
             <div className="reader-container">
               <NormalReader />
             </div>
-            <SpeedReader />
           </div>
           <BookmarkManager />
         </div>

@@ -3,7 +3,7 @@ import { useApp } from "../context/AppContext";
 import "./SpeedReader.css";
 import { focusReaderRegion } from "../utils/readerFocus";
 
-export function SpeedReader() {
+export function SpeedReader({ sourceStart = 0 }: { sourceStart?: number }) {
   const {
     currentDocument,
     pausePlayback,
@@ -71,9 +71,10 @@ export function SpeedReader() {
   return (
     <div
       id="focus-reader"
-      className="speed-reader"
+      className="speed-reader speed-reader-inline"
+      data-reader-ui="true"
       tabIndex={0}
-      aria-label="速读控制区"
+      aria-label="流式速读聚焦框"
       aria-describedby="focus-keyboard-hint"
       onKeyDown={(e) => {
         if (e.target !== e.currentTarget) return;
@@ -91,17 +92,18 @@ export function SpeedReader() {
     >
       <div className="focus-reader-heading">
         <span className="focus-document" title={currentDocument.name}>{currentDocument.name}</span>
-        <span className="focus-mode" role="status" aria-live="polite">{speedReaderState.isPlaying ? "正在播放" : "已暂停"}</span>
+        <span className="focus-mode" role="status" aria-live="polite">{speedReaderState.isPlaying ? "流动中" : "已暂停"}</span>
         <button onClick={() => { pausePlayback(); focusReaderRegion("original"); }}>回看原文</button>
       </div>
       <div
         className="speed-reader-display"
         style={{
-          backgroundColor: settings.backgroundColor,
+          backgroundColor: settings.highlightColor,
         }}
       >
         <div
           className="speed-reader-text"
+          data-source-start={sourceStart}
           style={{
             fontSize: `${settings.fontSize * 2}px`,
             color: settings.fontColor,
@@ -152,6 +154,14 @@ export function SpeedReader() {
             {speedReaderState.chunks.length}
           </div>
         </div>
+        <details className="pace-settings">
+          <summary>
+            节奏 · {settings.speedReaderPlaybackSpeed} 窗口/秒 ×{" "}
+            {settings.speedReaderWindowWidth} 字符 ·{" "}
+            {Math.round(
+              settings.speedReaderPlaybackSpeed * settings.speedReaderWindowWidth,
+            )} 字符/秒
+          </summary>
         <div className="speed-info">
           <div className="speed-control-item">
             <label>
@@ -365,6 +375,7 @@ export function SpeedReader() {
             </div>
           </div>
         </div>
+        </details>
       </div>
     </div>
   );

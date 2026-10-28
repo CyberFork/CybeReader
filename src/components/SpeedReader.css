@@ -1,13 +1,9 @@
 .speed-reader {
   width: 100%;
-  height: 350px;
-  min-height: 300px;
-  max-height: 500px;
   display: flex;
   flex-direction: column;
   background: #fafafa;
-  border-top: 2px solid #007bff;
-  flex-shrink: 0;
+  border: 2px solid #007bff;
 }
 
 .speed-reader.empty {
@@ -17,7 +13,7 @@
 }
 
 .speed-reader-display {
-  flex: 1;
+  flex: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,7 +22,7 @@
   margin: 10px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  min-height: 150px;
+  min-height: clamp(112px, 17vh, 160px);
 }
 
 .speed-reader-text {
@@ -37,7 +33,7 @@
 }
 
 .speed-reader-controls {
-  padding: 16px 20px;
+  padding: 12px 16px 14px;
   border-top: 1px solid #e0e0e0;
   background: white;
 }
@@ -93,14 +89,31 @@
   color: #666;
 }
 
+.pace-settings {
+  border-top: 1px solid #e0e0e0;
+  padding-top: 9px;
+}
+
+.pace-settings summary {
+  cursor: pointer;
+  font-size: 12px;
+  color: #666;
+  list-style-position: inside;
+  user-select: none;
+}
+
+.pace-settings[open] summary {
+  margin-bottom: 8px;
+}
+
 .speed-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 12px;
   color: #666;
-  padding-top: 12px;
-  border-top: 1px solid #e0e0e0;
+  padding-top: 8px;
+  border-top: 0;
   gap: 12px;
 }
 

@@ -35,7 +35,7 @@ button:disabled { opacity:.42; }
 .highlight { border-radius:0; box-shadow:0 2px 0 #5ef6ff66; transition:none; }
 .speed-reader { border-color:var(--line); background:#07151f; }
 .speed-reader-display { box-shadow:none; border:1px solid #33788a; border-radius:0; margin:12px; position:relative; clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px); }
-.speed-reader-display::before { content:'03 / FOCUS'; position:absolute; top:9px; left:12px; font-family:Rajdhani,monospace; font-size:10px; letter-spacing:.15em; color:var(--muted); }
+.speed-reader-display::before { content:'02 / FLOW FOCUS'; position:absolute; top:9px; left:12px; font-family:Rajdhani,monospace; font-size:10px; letter-spacing:.15em; color:var(--muted); }
 .speed-reader-text { font-family:system-ui,sans-serif; font-weight:500; }
 .speed-reader-controls { background:var(--panel); border-color:var(--line); }
 .control-buttons button { background:#0c2a38; border:1px solid var(--line); border-radius:0; color:var(--text); }
@@ -46,6 +46,8 @@ button:disabled { opacity:.42; }
 .progress-bar { background:#1a3441; border-radius:0; height:4px; }
 .progress-fill { background:var(--cyan); border-radius:0; transition:none; }
 .progress-text,.speed-info,.speed-result { color:var(--muted); }
+.pace-settings { border-color:var(--line); }
+.pace-settings summary { color:var(--muted); }
 .speed-info { border-color:var(--line); }
 .editable-value,.speed-multiply,.arrow-btn { color:var(--cyan); }
 .arrow-btn { background:#0b2733; border-color:#346978; }

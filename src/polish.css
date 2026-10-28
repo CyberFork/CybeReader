@@ -229,7 +229,8 @@ textarea:focus-visible {
     overflow: visible;
   }
   .reader-container {
-    height: 380px;
+    height: min(72dvh, 680px);
+    min-height: 500px;
     flex: none;
   }
   .normal-reader {
@@ -269,7 +270,7 @@ textarea:focus-visible {
   height: auto;
   min-height: 0;
   max-height: none;
-  border-top-color: #8bc8bd;
+  border-color: #8bc8bd;
 }
 .speed-reader-display {
   flex: none;

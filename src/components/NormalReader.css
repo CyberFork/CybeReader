@@ -17,13 +17,23 @@
 }
 
 .normal-reader-content {
-  max-width: 800px;
+  width: min(100%, 800px);
   margin: 0 auto;
+  padding-block: clamp(120px, 28vh, 320px);
 }
 
 .normal-reader-text {
+  display: block;
   white-space: pre-wrap;
   word-wrap: break-word;
+}
+
+.inline-focus-anchor {
+  display: block;
+  width: 100%;
+  margin: clamp(24px, 5vh, 56px) 0;
+  scroll-margin-block: 35vh;
+  white-space: normal;
 }
 
 .highlight {

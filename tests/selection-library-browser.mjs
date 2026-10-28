@@ -8,12 +8,27 @@ const results=[];
 const sample='天地玄黄，宇宙洪荒。日月盈昃，辰宿列张。👨‍👩‍👧‍👦é测试选择。'.repeat(500);
 async function select(page,a,b,backward=false) {
   await page.locator('.normal-reader-text').evaluate((el,{a,b,backward})=>{
-    const walker=document.createTreeWalker(el,NodeFilter.SHOW_TEXT); let n,offset=0,start,end;
-    while(n=walker.nextNode()) {
-      if(!start&&offset+n.length>=a) start=[n,a-offset];
-      if(offset+n.length>=b){end=[n,b-offset];break;}
-      offset+=n.length;
-    }
+    const sources=[...el.querySelectorAll('[data-source-start]')];
+    const locate=(target)=>{
+      let consumed=0;
+      for(const source of sources){
+        const length=source.textContent.length;
+        if(target<=consumed+length){
+          const local=Math.max(0,target-consumed);
+          const walker=document.createTreeWalker(source,NodeFilter.SHOW_TEXT);
+          let node,offset=0,last=null;
+          while(node=walker.nextNode()){
+            last=node;
+            if(local<=offset+node.length)return [node,local-offset];
+            offset+=node.length;
+          }
+          if(last)return [last,last.length];
+        }
+        consumed+=length;
+      }
+      throw new Error(`source offset ${target} is outside ${consumed} characters`);
+    };
+    const start=locate(a),end=locate(b);
     const s=window.getSelection(); s.removeAllRanges();
     s.setBaseAndExtent(...(backward?end:start),...(backward?start:end));
     document.dispatchEvent(new Event('selectionchange'));
@@ -44,15 +59,27 @@ try {
   await page.getByRole('button',{name:'暂停',exact:true}).click();
   // Selection while playing pauses first, actual drag through browser pointer.
   await page.getByRole('button',{name:'播放',exact:true}).click();
-  const bounds=await page.locator('.normal-reader-text').boundingBox();
-  await page.mouse.move(bounds.x+5,bounds.y+12);await page.mouse.down();
-  await page.mouse.move(bounds.x+110,bounds.y+12,{steps:12});await page.mouse.up();
+  const trailing=page.locator('#original-text > [data-source-start]').last();
+  await trailing.scrollIntoViewIfNeeded();
+  const point=await trailing.evaluate(el=>{
+    const viewport=document.querySelector('.normal-reader').getBoundingClientRect();
+    const tools=document.querySelector('.reader-tools').getBoundingClientRect();
+    const walker=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),node=walker.nextNode();
+    const range=document.createRange();range.selectNodeContents(node);
+    const rect=[...range.getClientRects()].find(r=>r.top>tools.bottom+4&&r.bottom<viewport.bottom-4);
+    if(!rect)throw new Error('no visible source text for pointer selection');
+    return {x:rect.left+5,y:rect.top+rect.height/2};
+  });
+  await page.mouse.move(point.x,point.y);await page.mouse.down();
+  await page.mouse.move(point.x+110,point.y,{steps:12});await page.mouse.up();
   await page.getByRole('button',{name:'播放',exact:true}).waitFor();
   // Long document: visible section offset is added, then persisted exactly.
   await page.getByRole('button',{name:'下一段',exact:true}).click();
   const content=await page.locator('.normal-reader-text').textContent();
   const before=Number((await page.locator('.text-seek-controls').innerText()).match(/第 (\d+)/)[1])-1;
-  await select(page,60,68);
+  const leading=await page.locator('#original-text > [data-source-start]').first().textContent();
+  const focused=await page.locator('.speed-reader-text').textContent();
+  await select(page,leading.length+focused.length+60,leading.length+focused.length+68);
   const after=Number((await page.locator('.text-seek-controls').innerText()).match(/第 (\d+)/)[1])-1;
   assert(after>before);assert(content.includes(await page.locator('.speed-reader-text').innerText()));
   const selectedText=await page.locator('.speed-reader-text').innerText();

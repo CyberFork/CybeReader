@@ -36,9 +36,11 @@ try {
   await capture(5);
   await page.getByRole("button", { name: "播放", exact: true }).click();
   await capture(15);
+  await page.locator(".pace-settings summary").click();
   await page.getByRole("button", { name: "增加宽度", exact: true }).click();
   await page.getByRole("button", { name: "增加速度", exact: true }).click();
   await capture(12);
+  await page.locator(".pace-settings summary").click();
   await page.getByRole("button", { name: "暂停", exact: true }).click();
   await page.getByRole("button", { name: "添加书签", exact: true }).click();
   await page.getByRole("button", { name: "添加笔记" }).click();

@@ -18,5 +18,6 @@ jobs:
           docker run -d --name cybereader-ci -p 127.0.0.1:4175:8080 cybereader:test
           for i in $(seq 1 30); do curl -fsS http://127.0.0.1:4175/cybereader/ >/dev/null && break || sleep 1; done
           npm run test:browser
+          APP_URL=http://127.0.0.1:4175/cybereader/ npm run test:flow
           APP_URL=http://127.0.0.1:4175/cybereader/ node tests/selection-library-browser.mjs
           APP_URL=http://127.0.0.1:4175/cybereader/ npm run test:journey
